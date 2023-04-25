@@ -31,15 +31,16 @@ class Cactus {
 var timer = 0;
 var cactus여러개 = []; // 배열
 var 점프timer = 0;
+var animation;
 
 /**
  * 1초에 60번 (참고) 실행횟수는 모니터 FPS에 따라 다름!!!!!
  */
 function 프레임마다실행할함수() {
-  requestAnimationFrame(프레임마다실행할함수);
+  animation = requestAnimationFrame(프레임마다실행할함수);
   timer++;
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height); //캔버스 완전 초기화!
 
   if (timer % 144 === 0) {
     //144프레임마다. 즉, 컴퓨터에 설정에 맞게 1초마다 설정!
@@ -54,6 +55,9 @@ function 프레임마다실행할함수() {
       o.splice(i, 1); //배열 비우기.
     }
     a.x--;
+
+    충동하냐(dino, a);
+
     a.draw();
   });
 
@@ -77,6 +81,17 @@ function 프레임마다실행할함수() {
 }
 
 프레임마다실행할함수();
+
+//충돌확인기능
+
+function 충동하냐(dino, cactus) {
+  var x축차이 = cactus.x - (dino.x + dino.width);
+  var y축차이 = cactus.y - (dino.y + dino.height);
+  if (x축차이 < 0 && y축차이 < 0) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); //캔버스 완전 초기화!
+    cancelAnimationFrame(animation); //게임중단(애니메이션 종료)
+  }
+}
 
 var 점프중 = false;
 
