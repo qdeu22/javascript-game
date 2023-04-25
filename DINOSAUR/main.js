@@ -42,8 +42,8 @@ function 프레임마다실행할함수() {
 
   ctx.clearRect(0, 0, canvas.width, canvas.height); //캔버스 완전 초기화!
 
-  if (timer % 144 === 0) {
-    //144프레임마다. 즉, 컴퓨터에 설정에 맞게 1초마다 설정!
+  if (timer % 200 === 0) {
+    // 즉, 컴퓨터에 설정에 맞게 1초마다 설정!
     // 장애물을 생성!
     var cactus = new Cactus();
     cactus여러개.push(cactus);
