@@ -56,7 +56,22 @@ function 프레임마다실행할함수() {
     a.draw();
   });
 
+  if (점프중 === true) {
+    dino.y -= 1; //점프!
+  }
+
   dino.draw();
 }
 
 프레임마다실행할함수();
+
+var 점프중 = false;
+
+/**
+ * 스페이스바 누르면 점프
+ */
+document.addEventListener("keydown", function (e) {
+  if (e.code === "Space") {
+    점프중 = true;
+  }
+});
