@@ -29,6 +29,7 @@ class Cactus {
 }
 
 var timer = 0;
+var cactus여러개 = []; // 배열
 
 /**
  * (참고) 실행횟수는 모니터 FPS에 따라 다름!!!!!
@@ -41,9 +42,17 @@ function 프레임마다실행할함수() {
 
   if (timer % 144 === 0) {
     //144프레임마다. 즉, 컴퓨터에 설정에 맞게 1초마다 설정!
+    // 장애물을 생성!
     var cactus = new Cactus();
-    cactus.draw();
+    cactus여러개.push(cactus);
   }
+
+  cactus여러개.forEach((a) => {
+    a.x--;
+    a.draw();
+  });
+
   dino.draw();
 }
+
 프레임마다실행할함수();
