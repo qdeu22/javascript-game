@@ -14,7 +14,6 @@ var dino = {
     ctx.fillRect(this.x, this.y, this.width, this.height);
   },
 };
-dino.draw();
 
 class Cactus {
   constructor() {
@@ -30,3 +29,14 @@ class Cactus {
 }
 var cactus = new Cactus();
 cactus.draw();
+
+/**
+ * 1초에 60번 코드 실행하기
+ */
+function 프레임마다실행할함수() {
+  requestAnimationFrame(프레임마다실행할함수);
+  //TOBE 실행할 것 적기
+  dino.x++;
+  dino.draw();
+}
+프레임마다실행할함수();
