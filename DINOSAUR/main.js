@@ -61,6 +61,11 @@ function 프레임마다실행할함수() {
     dino.y -= 1; //점프!
     점프timer++;
   }
+  if (점프중 === false) {
+    if (dino.y < 200) {
+      dino.y += 1;
+    }
+  }
   if (점프timer > 100) {
     //100프레임이 지나면
     점프중 = false;
