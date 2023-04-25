@@ -4,6 +4,9 @@ var ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth - 100;
 canvas.height = window.innerHeight - 100;
 
+var img2 = new Image();
+img2.src = "dinosaur.png";
+
 var dino = {
   x: 10,
   y: 200,
@@ -11,9 +14,13 @@ var dino = {
   height: 50,
   draw() {
     ctx.fillStyle = "green";
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    //ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.drawImage(img2, this.x, this.y);
   },
 };
+
+var img1 = new Image();
+img1.src = "naruto.png";
 
 class Cactus {
   constructor() {
@@ -24,7 +31,8 @@ class Cactus {
   }
   draw() {
     ctx.fillStyle = "red";
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    //ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.drawImage(img1, this.x, this.y);
   }
 }
 
