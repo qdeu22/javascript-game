@@ -36,6 +36,9 @@ cactus.draw();
 function 프레임마다실행할함수() {
   requestAnimationFrame(프레임마다실행할함수);
   //TOBE 실행할 것 적기
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   dino.x++;
   dino.draw();
 }
