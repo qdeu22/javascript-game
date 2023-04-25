@@ -57,6 +57,7 @@ function 프레임마다실행할함수() {
     a.draw();
   });
 
+  //점프기능
   if (점프중 === true) {
     dino.y -= 1; //점프!
     점프timer++;
@@ -69,6 +70,7 @@ function 프레임마다실행할함수() {
   if (점프timer > 100) {
     //100프레임이 지나면
     점프중 = false;
+    점프timer = 0;
   }
 
   dino.draw();
