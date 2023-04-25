@@ -27,19 +27,23 @@ class Cactus {
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 }
-var cactus = new Cactus();
-cactus.draw();
+
+var timer = 0;
 
 /**
- * 1초에 60번 코드 실행하기
+ * (참고) 실행횟수는 모니터 FPS에 따라 다름!!!!!
  */
 function 프레임마다실행할함수() {
   requestAnimationFrame(프레임마다실행할함수);
-  //TOBE 실행할 것 적기
+  timer++;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  dino.x++;
+  if (timer % 144 === 0) {
+    //144프레임마다. 즉, 컴퓨터에 설정에 맞게 1초마다 설정!
+    var cactus = new Cactus();
+    cactus.draw();
+  }
   dino.draw();
 }
 프레임마다실행할함수();
