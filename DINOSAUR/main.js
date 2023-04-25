@@ -32,7 +32,7 @@ var timer = 0;
 var cactus여러개 = []; // 배열
 
 /**
- * (참고) 실행횟수는 모니터 FPS에 따라 다름!!!!!
+ * 1초에 60번 (참고) 실행횟수는 모니터 FPS에 따라 다름!!!!!
  */
 function 프레임마다실행할함수() {
   requestAnimationFrame(프레임마다실행할함수);
@@ -47,7 +47,11 @@ function 프레임마다실행할함수() {
     cactus여러개.push(cactus);
   }
 
-  cactus여러개.forEach((a) => {
+  cactus여러개.forEach((a, i, o) => {
+    //x 좌표가 0미만이면 제거
+    if (a.x < 0) {
+      o.splice(i, 1); //배열 비우기.
+    }
     a.x--;
     a.draw();
   });
