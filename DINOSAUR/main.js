@@ -30,6 +30,7 @@ class Cactus {
 
 var timer = 0;
 var cactus여러개 = []; // 배열
+var 점프timer = 0;
 
 /**
  * 1초에 60번 (참고) 실행횟수는 모니터 FPS에 따라 다름!!!!!
@@ -58,6 +59,11 @@ function 프레임마다실행할함수() {
 
   if (점프중 === true) {
     dino.y -= 1; //점프!
+    점프timer++;
+  }
+  if (점프timer > 100) {
+    //100프레임이 지나면
+    점프중 = false;
   }
 
   dino.draw();
