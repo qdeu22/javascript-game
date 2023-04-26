@@ -21,6 +21,18 @@ var gameOverImage;
 var spaceshipX = canvas.width / 2 - 50;
 var spaceshipY = canvas.height - 100;
 
+var bulletList = []; //총알들을 저장하는 리스트
+function Bullet() {
+  this.x = 0;
+  this.y = 0;
+  this.init = function () {
+    this.x = spaceshipX;
+    this.y = spaceshipY;
+
+    bulletList.push(this);
+  };
+}
+
 /**
  * 게임 이미지 불러오기
  */
@@ -54,7 +66,19 @@ function setupKeyBoardListenser() {
   document.addEventListener("keyup", function (event) {
     delete keysDown[event.key];
     console.log("버튼 클릭후?", keysDown);
+
+    if (event.key === " ") {
+      //스페이스바
+      createBullet(); //총알 생성
+    }
   });
+}
+
+function createBullet() {
+  console.log("총알 생성!");
+  var bullet = new Bullet();
+  bullet.init();
+  console.log("새로운 총알 리스트", bulletList);
 }
 
 function update() {
@@ -82,7 +106,19 @@ function update() {
 function render() {
   context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); //백그라운드 이미지 불러오기
   context.drawImage(spaceshipImage, spaceshipX, spaceshipY);
+  for (let i = 0; i < bulletList.length; i++) {
+    context.drawImage(bulletImage, bulletList[i].x, bulletList[i].y);
+  }
 }
+
+/**
+ * 총알 만들기
+ * 1. 스페이스바를 누르면 총알 발사
+ * 2. 총알이 발상 = 총알의 y값이 --, 총알의 x값은?  스페이스를 누른 순간의 우주선의 x값
+ * 3. 발사된 총알들은 총알 배열에 저장을 한다.
+ * 4. 총알들은 x, y좌표값이 있어야함
+ * 5. 총알의 배열을 가지고 render 그려준다
+ */
 
 function main() {
   update(); //좌표값 업데이트
