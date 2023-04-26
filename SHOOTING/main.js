@@ -40,12 +40,20 @@ function loadImage() {
   gameOverImage = new Image();
   gameOverImage.src = "images/gameOver.png";
 }
+
+//객체형태..
+var keysDown = {};
 /**
  * 키 작동 함수
  */
 function setupKeyBoardListenser() {
   document.addEventListener("keydown", function (event) {
-    console.log("입력된 키?", event.key);
+    keysDown[event.key] = true;
+    console.log("키 다운 객체에 들어간 값은?", keysDown);
+  });
+  document.addEventListener("keyup", function (event) {
+    delete keysDown[event.key];
+    console.log("버튼 클릭후?", keysDown);
   });
 }
 
