@@ -34,8 +34,8 @@ function loadImage() {
   bulletImage = new Image();
   bulletImage.src = "images/bullet.png";
 
-  enemyImage = new Image();
-  enemyImage.src = "images/enemy.png";
+  meteorImage = new Image();
+  meteorImage.src = "images/meteor.png";
 
   gameOverImage = new Image();
   gameOverImage.src = "images/gameOver.png";
@@ -57,6 +57,17 @@ function setupKeyBoardListenser() {
   });
 }
 
+function update() {
+  if ("ArrowRight" in keysDown) {
+    //오른쪽
+    spaceshipX += 2; // 우주선의 속도
+  }
+  if ("ArrowLeft" in keysDown) {
+    //오른쪽
+    spaceshipX -= 2; // 우주선의 속도
+  }
+}
+
 /**
  * 캔버스에 그리기
  */
@@ -66,7 +77,8 @@ function render() {
 }
 
 function main() {
-  render();
+  update(); //좌표값 업데이트
+  render(); // 그리기
   console.log("애니메이션 프레임 작동!");
   // 애니메이션 작동!
   requestAnimationFrame(main);
