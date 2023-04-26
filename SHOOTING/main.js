@@ -17,6 +17,9 @@ var bulletImage;
 var enemyImage;
 var gameOverImage;
 
+//true면 게임 종료, false라면 게임 진행
+var gameOver = false;
+
 //우주선 좌표
 var spaceshipX = canvas.width / 2 - 50;
 var spaceshipY = canvas.height - 100;
@@ -54,6 +57,11 @@ function Meteor() {
   };
   this.update = function () {
     this.y += 2; //메테오 떨어지는 속도
+
+    if (this.y >= canvas.height - 60) {
+      gameOver = true;
+      console.log("gameover");
+    }
   };
 }
 
