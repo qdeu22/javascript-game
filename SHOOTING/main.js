@@ -36,6 +36,25 @@ function Bullet() {
   };
 }
 
+function gernerateRandomValue(min, max) {
+  var randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  return randomNum;
+}
+
+var meteorList = [];
+
+function Meteor() {
+  this.x = 0;
+  this.y = 0;
+  this.init = function () {
+    this.y = 0;
+    this.x = gernerateRandomValue(0, canvas.width - 60);
+  };
+  this.update = function () {
+    this.y -= 7;
+  };
+}
+
 /**
  * 게임 이미지 불러오기
  */
@@ -128,6 +147,14 @@ function render() {
  * 5. 총알의 배열을 가지고 render 그려준다
  */
 
+/**
+ * 메테오 만들기
+ * 1. 메테오 위치가 랜덤
+ * 2. 메테오가 내려온다
+ * 3. 1초마다 하나씩 적군이 나옴
+ * 4. 메테오가 바닥에 닿으면 게임오버
+ * 5. 메테오와 총알이 만나면 사라지고 점수 1점 획득
+ */
 function main() {
   update(); //좌표값 업데이트
   render(); // 그리기
