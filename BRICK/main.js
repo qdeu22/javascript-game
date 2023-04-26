@@ -11,8 +11,17 @@ document.body.appendChild(canvas);
 var ballX = canvas.width / 2;
 var bally = canvas.height - 30;
 
-context.beginPath();
-context.arc(ballX, bally, 10, 0, Math.PI * 2);
-context.fillStyle = "#0095DD";
-context.fill();
-context.closePath();
+var dx = 2;
+var dy = -2;
+
+function draw() {
+  context.beginPath();
+  context.arc(ballX, bally, 10, 0, Math.PI * 2);
+  context.fillStyle = "#0095DD";
+  context.fill();
+  context.closePath();
+  ballX += dx;
+  bally += dy;
+}
+
+setInterval(draw, 10);
