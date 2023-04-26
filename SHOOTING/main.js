@@ -36,3 +36,13 @@ function loadImage() {
   gameOverImage = new Image();
   gameOverImage.src = "images/gameOver.png";
 }
+
+/**
+ * 캔버스에 그리기
+ */
+function render() {
+  context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+}
+
+loadImage();
+render();
