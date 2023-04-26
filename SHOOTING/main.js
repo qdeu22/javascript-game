@@ -40,6 +40,14 @@ function loadImage() {
   gameOverImage = new Image();
   gameOverImage.src = "images/gameOver.png";
 }
+/**
+ * 키 작동 함수
+ */
+function setupKeyBoardListenser() {
+  document.addEventListener("keydown", function (event) {
+    console.log("입력된 키?", event.key);
+  });
+}
 
 /**
  * 캔버스에 그리기
@@ -57,4 +65,5 @@ function main() {
 }
 
 loadImage();
+setupKeyBoardListenser();
 main();
