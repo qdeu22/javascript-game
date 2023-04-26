@@ -22,6 +22,7 @@ var spaceshipX = canvas.width / 2 - 50;
 var spaceshipY = canvas.height - 100;
 
 var bulletList = []; //총알들을 저장하는 리스트
+
 function Bullet() {
   this.x = 0;
   this.y = 0;
@@ -103,6 +104,13 @@ function createBullet() {
   console.log("새로운 총알 리스트", bulletList);
 }
 
+function createMeteor() {
+  const interval = setInterval(function () {
+    let meteor = new Meteor();
+    meteor.init();
+  }, 1000); //1초 마다 생성
+}
+
 function update() {
   if ("ArrowRight" in keysDown) {
     //오른쪽
@@ -165,4 +173,5 @@ function main() {
 
 loadImage();
 setupKeyBoardListenser();
+createMeteor();
 main();
