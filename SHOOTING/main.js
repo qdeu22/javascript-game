@@ -19,6 +19,7 @@ var gameOverImage;
 
 //true면 게임 종료, false라면 게임 진행
 var gameOver = false;
+var score = 0;
 
 //우주선 좌표
 var spaceshipX = canvas.width / 2 - 50;
@@ -29,6 +30,7 @@ var bulletList = []; //총알들을 저장하는 리스트
 function Bullet() {
   this.x = 0;
   this.y = 0;
+  this.alive = true; //true안 부딪친 총알 ,false 부딪친 총알
   this.init = function () {
     this.x = spaceshipX + 40;
     this.y = spaceshipY;
@@ -37,6 +39,19 @@ function Bullet() {
   };
   this.update = function () {
     this.y -= 7;
+  };
+  this.checkHit = function () {
+    for (let i = 0; meteorList.length; i++) {
+      if (
+        this.y <= meteorList[i].y &&
+        this.x >= meteorList[i].x &&
+        this.x <= meteorList[i].x + 60
+      ) {
+        //총알이 메테오랑 부딪치면 메테오는 사라짐, 즉, 점수획득!
+        score++;
+        this.alive = false; //부딪친 총알
+      }
+    }
   };
 }
 
@@ -155,7 +170,9 @@ function render() {
   context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); //백그라운드 이미지 불러오기
   context.drawImage(spaceshipImage, spaceshipX, spaceshipY);
   for (let i = 0; i < bulletList.length; i++) {
-    context.drawImage(bulletImage, bulletList[i].x, bulletList[i].y);
+    if (bulletList[i].alive) {
+      context.drawImage(bulletImage, bulletList[i].x, bulletList[i].y);
+    }
   }
   for (let i = 0; i < meteorList.length; i++) {
     context.drawImage(meteorImage, meteorList[i].x, meteorList[i].y);
