@@ -14,9 +14,11 @@ var bally = canvas.height - 30;
 var dx = 2;
 var dy = -2;
 
+var ballRadius = 10; // 원의 반지름
+
 function drawBall() {
   context.beginPath();
-  context.arc(ballX, bally, 10, 0, Math.PI * 2);
+  context.arc(ballX, bally, ballRadius, 0, Math.PI * 2);
   context.fillStyle = "#0095DD";
   context.fill();
   context.closePath();
@@ -25,6 +27,14 @@ function drawBall() {
 function draw() {
   context.clearRect(0, 0, canvas.width, canvas.height); //이전 프레임 캔버스 지우기!
   drawBall();
+
+  if (ballX + dx > canvas.width || ballX + dx < 0) {
+    dx = -dx;
+  }
+  if (bally + dy > canvas.height || bally + dy < 0) {
+    dy = -dy;
+  }
+
   ballX += dx;
   bally += dy;
 }
