@@ -26,10 +26,13 @@ function Bullet() {
   this.x = 0;
   this.y = 0;
   this.init = function () {
-    this.x = spaceshipX;
+    this.x = spaceshipX + 40;
     this.y = spaceshipY;
 
     bulletList.push(this);
+  };
+  this.update = function () {
+    this.y -= 7;
   };
 }
 
@@ -97,6 +100,11 @@ function update() {
   }
   if (spaceshipX >= canvas.width - 100) {
     spaceshipX = canvas.width - 100;
+  }
+
+  //총알의 y좌표 업데이트하는 함수 호출
+  for (let i = 0; i < bulletList.length; i++) {
+    bulletList[i].update();
   }
 }
 
