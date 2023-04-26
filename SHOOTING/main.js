@@ -173,6 +173,10 @@ function update() {
 function render() {
   context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); //백그라운드 이미지 불러오기
   context.drawImage(spaceshipImage, spaceshipX, spaceshipY);
+  context.fillText(`Score:${score}`, 20, 20);
+  context.fillStyle = "white";
+  context.font = "20px Arial";
+
   for (let i = 0; i < bulletList.length; i++) {
     if (bulletList[i].alive) {
       context.drawImage(bulletImage, bulletList[i].x, bulletList[i].y);
