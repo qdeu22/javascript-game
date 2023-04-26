@@ -15,6 +15,7 @@ var dx = 2;
 var dy = -2;
 
 function draw() {
+  context.clearRect(0, 0, canvas.width, canvas.height); //이전 프레임 캔버스 지우기!
   context.beginPath();
   context.arc(ballX, bally, 10, 0, Math.PI * 2);
   context.fillStyle = "#0095DD";
