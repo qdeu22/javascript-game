@@ -53,7 +53,7 @@ function Meteor() {
     meteorList.push(this);
   };
   this.update = function () {
-    this.y -= 7;
+    this.y += 2; //메테오 떨어지는 속도
   };
 }
 
@@ -133,6 +133,10 @@ function update() {
   //총알의 y좌표 업데이트하는 함수 호출
   for (let i = 0; i < bulletList.length; i++) {
     bulletList[i].update();
+  }
+
+  for (let i = 0; i < meteorList.length; i++) {
+    meteorList[i].update();
   }
 }
 
