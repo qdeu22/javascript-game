@@ -60,11 +60,19 @@ function setupKeyBoardListenser() {
 function update() {
   if ("ArrowRight" in keysDown) {
     //오른쪽
-    spaceshipX += 2; // 우주선의 속도
+    spaceshipX += 3; // 우주선의 속도
   }
   if ("ArrowLeft" in keysDown) {
     //오른쪽
-    spaceshipX -= 2; // 우주선의 속도
+    spaceshipX -= 3; // 우주선의 속도
+  }
+
+  //canvas 크기에 맞게 이동하게 제한
+  if (spaceshipX <= 0) {
+    spaceshipX = 0;
+  }
+  if (spaceshipX >= canvas.width - 100) {
+    spaceshipX = canvas.width - 100;
   }
 }
 
