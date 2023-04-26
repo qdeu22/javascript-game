@@ -41,8 +41,15 @@ function loadImage() {
  * 캔버스에 그리기
  */
 function render() {
-  context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+  context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); //백그라운드 이미지 불러오기
+}
+
+function main() {
+  render();
+  console.log("애니메이션 프레임 작동!");
+  // 애니메이션 작동!
+  requestAnimationFrame(main);
 }
 
 loadImage();
-render();
+main();
