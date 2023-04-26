@@ -180,11 +180,15 @@ function render() {
  * 5. 메테오와 총알이 만나면 사라지고 점수 1점 획득
  */
 function main() {
-  update(); //좌표값 업데이트
-  render(); // 그리기
-  console.log("애니메이션 프레임 작동!");
-  // 애니메이션 작동!
-  requestAnimationFrame(main);
+  if (!gameOver) {
+    update(); //좌표값 업데이트
+    render(); // 그리기
+    //console.log("애니메이션 프레임 작동!");
+    // 애니메이션 작동!
+    requestAnimationFrame(main);
+  } else {
+    context.drawImage(gameOverImage, 10, 100, 380, 380);
+  }
 }
 
 loadImage();
