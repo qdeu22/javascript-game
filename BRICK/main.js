@@ -14,13 +14,17 @@ var bally = canvas.height - 30;
 var dx = 2;
 var dy = -2;
 
-function draw() {
-  context.clearRect(0, 0, canvas.width, canvas.height); //이전 프레임 캔버스 지우기!
+function drawBall() {
   context.beginPath();
   context.arc(ballX, bally, 10, 0, Math.PI * 2);
   context.fillStyle = "#0095DD";
   context.fill();
   context.closePath();
+}
+
+function draw() {
+  context.clearRect(0, 0, canvas.width, canvas.height); //이전 프레임 캔버스 지우기!
+  drawBall();
   ballX += dx;
   bally += dy;
 }
