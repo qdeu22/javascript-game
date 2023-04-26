@@ -50,6 +50,7 @@ function Meteor() {
   this.init = function () {
     this.y = 0;
     this.x = gernerateRandomValue(0, canvas.width - 60);
+    meteorList.push(this);
   };
   this.update = function () {
     this.y -= 7;
@@ -143,6 +144,9 @@ function render() {
   context.drawImage(spaceshipImage, spaceshipX, spaceshipY);
   for (let i = 0; i < bulletList.length; i++) {
     context.drawImage(bulletImage, bulletList[i].x, bulletList[i].y);
+  }
+  for (let i = 0; i < meteorList.length; i++) {
+    context.drawImage(meteorImage, meteorList[i].x, meteorList[i].y);
   }
 }
 
