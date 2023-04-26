@@ -17,6 +17,10 @@ var bulletImage;
 var enemyImage;
 var gameOverImage;
 
+//우주선 좌표
+var spaceshipX = canvas.width / 2 - 50;
+var spaceshipY = canvas.height - 100;
+
 /**
  * 게임 이미지 불러오기
  */
@@ -42,6 +46,7 @@ function loadImage() {
  */
 function render() {
   context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); //백그라운드 이미지 불러오기
+  context.drawImage(spaceshipImage, spaceshipX, spaceshipY);
 }
 
 function main() {
