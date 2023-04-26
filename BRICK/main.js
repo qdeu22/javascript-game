@@ -28,10 +28,10 @@ function draw() {
   context.clearRect(0, 0, canvas.width, canvas.height); //이전 프레임 캔버스 지우기!
   drawBall();
 
-  if (ballX + dx > canvas.width || ballX + dx < 0) {
+  if (ballX + dx > canvas.width - ballRadius || ballX + dx < ballRadius) {
     dx = -dx;
   }
-  if (bally + dy > canvas.height || bally + dy < 0) {
+  if (bally + dy > canvas.height - ballRadius || bally + dy < ballRadius) {
     dy = -dy;
   }
 
