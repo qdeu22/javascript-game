@@ -41,7 +41,7 @@ function Bullet() {
     this.y -= 7;
   };
   this.checkHit = function () {
-    for (let i = 0; meteorList.length; i++) {
+    for (let i = 0; i < meteorList.length; i++) {
       if (
         this.y <= meteorList[i].y &&
         this.x >= meteorList[i].x &&
@@ -50,6 +50,7 @@ function Bullet() {
         //총알이 메테오랑 부딪치면 메테오는 사라짐, 즉, 점수획득!
         score++;
         this.alive = false; //부딪친 총알
+        meteorList.splice(i, 1);
       }
     }
   };
@@ -155,7 +156,10 @@ function update() {
 
   //총알의 y좌표 업데이트하는 함수 호출
   for (let i = 0; i < bulletList.length; i++) {
-    bulletList[i].update();
+    if (bulletList[i].alive) {
+      bulletList[i].update();
+      bulletList[i].checkHit();
+    }
   }
 
   for (let i = 0; i < meteorList.length; i++) {
