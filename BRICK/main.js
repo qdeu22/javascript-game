@@ -76,8 +76,12 @@ function draw() {
   if (bally + dy < ballRadius) {
     dy = -dy;
   } else if (bally + dy > canvas.height - ballRadius) {
-    alert("GAME OVER");
-    document.location.reload(); // 현재 웹페이지를 새로고침
+    if (ballX > paddleX && ballX < paddleX + paddleWidth) {
+      dy = -dy;
+    } else {
+      alert("GAME OVER");
+      document.location.reload(); // 현재 웹페이지를 새로고침
+    }
   }
 
   if (leftPressed && paddleX > 0) {
