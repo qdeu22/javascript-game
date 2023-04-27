@@ -31,6 +31,22 @@ var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 
+function collisionDetection() {
+  for (var c = 0; c < brickColumnCount; c++) {
+    for (var r = 0; r < brickRowCount; r++) {
+      var brick = bricks[c][r];
+      if (
+        x > brick.x &&
+        x < brick.x + brickWidth &&
+        y > brick.y &&
+        y < brick.y + brickHeight
+      ) {
+        dy = -dy;
+      }
+    }
+  }
+}
+
 // 벽돌 생성 배열
 var bricks = [];
 for (let c = 0; c < brickColumnCount; c++) {
