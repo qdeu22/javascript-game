@@ -33,6 +33,15 @@ var brickOffsetLeft = 30;
 
 var score = 0;
 
+document.addEventListener("mousemove", mouseMoveHandler, false);
+
+function mouseMoveHandler(e) {
+  var relativeX = e.clientX - canvas.offsetLeft;
+  if (relativeX > 0 && relativeX < canvas.width) {
+    paddleX = relativeX - paddleWidth / 2;
+  }
+}
+
 function drawScore() {
   context.font = "16px Arial";
   context.fillStyle = "#0095DD";
