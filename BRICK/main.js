@@ -33,6 +33,14 @@ var brickOffsetLeft = 30;
 
 var score = 0;
 
+var lives = 3; //남은 생명 수
+
+function drawLives() {
+  context.font = "16px Arial";
+  context.fillStyle = "#0095DD";
+  context.fillText("Lives: " + lives, canvas.width - 65, 20);
+}
+
 document.addEventListener("mousemove", mouseMoveHandler, false);
 
 function mouseMoveHandler(e) {
@@ -147,6 +155,7 @@ function draw() {
   drawBall();
   drawPaddle();
   drawScore();
+  drawLives();
   collisionDetection();
 
   if (ballX + dx > canvas.width - ballRadius || ballX + dx < ballRadius) {
@@ -158,8 +167,17 @@ function draw() {
     if (ballX > paddleX && ballX < paddleX + paddleWidth) {
       dy = -dy;
     } else {
-      alert("GAME OVER");
-      document.location.reload(); // 현재 웹페이지를 새로고침
+      lives--;
+      if (!lives) {
+        alert("GAME OVER");
+        document.location.reload();
+      } else {
+        x = canvas.width / 2;
+        y = canvas.height - 30;
+        dx = 3;
+        dy = -3;
+        paddleX = (canvas.width - paddleWidth) / 2;
+      }
     }
   }
 
