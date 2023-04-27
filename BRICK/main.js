@@ -172,8 +172,8 @@ function draw() {
         alert("GAME OVER");
         document.location.reload();
       } else {
-        x = canvas.width / 2;
-        y = canvas.height - 30;
+        ballX = canvas.width / 2;
+        bally = canvas.height - 30;
         dx = 3;
         dy = -3;
         paddleX = (canvas.width - paddleWidth) / 2;
@@ -190,6 +190,7 @@ function draw() {
 
   ballX += dx;
   bally += dy;
+  requestAnimationFrame(draw);
 }
 
-setInterval(draw, 10);
+draw();
