@@ -25,7 +25,7 @@ var leftPressed = false;
 
 var brickRowCount = 3;
 var brickColumnCount = 5;
-var brickWidth = 75;
+var brickWidth = 60;
 var brickHeight = 20;
 var brickPadding = 10;
 var brickOffsetTop = 30;
@@ -43,10 +43,12 @@ for (let c = 0; c < brickColumnCount; c++) {
 function drawBricks() {
   for (let c = 0; c < brickColumnCount; c++) {
     for (let r = 0; r < brickRowCount; r++) {
-      bricks[c][r].x = 0;
-      bricks[c][r].y = 0;
+      var brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+      var brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+      bricks[c][r].x = brickX;
+      bricks[c][r].y = brickY;
       context.beginPath();
-      context.rect(0, 0, brickWidth, brickHeight);
+      context.rect(brickX, brickY, brickWidth, brickHeight);
       context.fillStyle = "#0095DD";
       context.fill();
       context.closePath();
