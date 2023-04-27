@@ -16,6 +16,23 @@ var dy = -2;
 
 var ballRadius = 10; // 원의 반지름
 
+var paddleHeight = 10;
+var paddleWidth = 75;
+var paddleX = (canvas.width - paddleWidth) / 2;
+
+function drawPaddle() {
+  context.beginPath();
+  context.rect(
+    paddleX,
+    canvas.height - paddleHeight,
+    paddleWidth,
+    paddleHeight
+  );
+  context.fillStyle = "#0095DD";
+  context.fill();
+  context.closePath();
+}
+
 function drawBall() {
   context.beginPath();
   context.arc(ballX, bally, ballRadius, 0, Math.PI * 2);
