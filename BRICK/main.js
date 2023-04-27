@@ -20,6 +20,30 @@ var paddleHeight = 10;
 var paddleWidth = 75;
 var paddleX = (canvas.width - paddleWidth) / 2;
 
+var rightPressed = false;
+var leftPressed = false;
+
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
+function keyDownHandler(e) {
+  if (e.key === "ArrowLeft") {
+    leftPressed = true;
+  }
+  if (e.key === "ArrowRight") {
+    rightPressed = true;
+  }
+}
+
+function keyUpHandler(e) {
+  if (e.key === "ArrowLeft") {
+    leftPressed = false;
+  }
+  if (e.key === "ArrowRight") {
+    rightPressed = false;
+  }
+}
+
 function drawPaddle() {
   context.beginPath();
   context.rect(
@@ -44,12 +68,20 @@ function drawBall() {
 function draw() {
   context.clearRect(0, 0, canvas.width, canvas.height); //이전 프레임 캔버스 지우기!
   drawBall();
+  drawPaddle();
 
   if (ballX + dx > canvas.width - ballRadius || ballX + dx < ballRadius) {
     dx = -dx;
   }
   if (bally + dy > canvas.height - ballRadius || bally + dy < ballRadius) {
     dy = -dy;
+  }
+
+  if (leftPressed && paddleX > 0) {
+    paddleX -= 7;
+  }
+  if (rightPressed && paddleX < canvas.width - paddleWidth) {
+    paddleX += 7;
   }
 
   ballX += dx;
