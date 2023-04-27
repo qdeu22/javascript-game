@@ -35,13 +35,16 @@ function collisionDetection() {
   for (var c = 0; c < brickColumnCount; c++) {
     for (var r = 0; r < brickRowCount; r++) {
       var brick = bricks[c][r];
-      if (
-        x > brick.x &&
-        x < brick.x + brickWidth &&
-        y > brick.y &&
-        y < brick.y + brickHeight
-      ) {
-        dy = -dy;
+      if (brick.status === 1) {
+        if (
+          ballX > brick.x &&
+          ballX < brick.x + brickWidth &&
+          bally > brick.y &&
+          bally < brick.y + brickHeight
+        ) {
+          dy = -dy;
+          brick.status = 0;
+        }
       }
     }
   }
@@ -52,22 +55,24 @@ var bricks = [];
 for (let c = 0; c < brickColumnCount; c++) {
   bricks[c] = [];
   for (let r = 0; r < brickRowCount; r++) {
-    bricks[c][r] = { x: 0, y: 0 };
+    bricks[c][r] = { x: 0, y: 0, status: 1 };
   }
 }
 
 function drawBricks() {
   for (let c = 0; c < brickColumnCount; c++) {
     for (let r = 0; r < brickRowCount; r++) {
-      var brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
-      var brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
-      bricks[c][r].x = brickX;
-      bricks[c][r].y = brickY;
-      context.beginPath();
-      context.rect(brickX, brickY, brickWidth, brickHeight);
-      context.fillStyle = "#0095DD";
-      context.fill();
-      context.closePath();
+      if (bricks[c][r].status === 1) {
+        var brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+        var brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+        bricks[c][r].x = brickX;
+        bricks[c][r].y = brickY;
+        context.beginPath();
+        context.rect(brickX, brickY, brickWidth, brickHeight);
+        context.fillStyle = "#0095DD";
+        context.fill();
+        context.closePath();
+      }
     }
   }
 }
@@ -119,6 +124,7 @@ function draw() {
   drawBricks();
   drawBall();
   drawPaddle();
+  collisionDetection();
 
   if (ballX + dx > canvas.width - ballRadius || ballX + dx < ballRadius) {
     dx = -dx;
