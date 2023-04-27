@@ -48,4 +48,16 @@ function drawTank() {
   context.closePath();
 }
 
-drawTank();
+function main() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  if (tankLeftPressed && tankX > 0) {
+    tankX -= tankSpeed;
+  }
+  if (tankRightPressed && tankX + tankWidth < canvas.width) {
+    tankX += tankSpeed;
+  }
+  drawTank();
+  requestAnimationFrame(main);
+}
+
+main();
