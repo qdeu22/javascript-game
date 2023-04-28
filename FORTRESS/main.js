@@ -31,6 +31,12 @@ function keyDownHandler(e) {
   if (e.key === "ArrowRight") {
     tankRightPressed = true;
   }
+  if (e.key === "ArrowUp" && cannonAngle <= Math.PI) {
+    cannonAngle += cannonAngleDIF;
+  }
+  if (e.key === "ArrowDown" && cannonAngle >= 0) {
+    cannonAngle -= cannonAngleDIF;
+  }
 }
 function keyUpHandler(e) {
   if (e.key === "ArrowLeft") {
