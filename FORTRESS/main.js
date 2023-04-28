@@ -26,6 +26,20 @@ var targetHeight = Math.floor(Math.random() * 100 + 10); // 표적의 세로길�
 var targetX = Math.floor(Math.random() * (500 - targetWidth + 500)); //표적의 x좌표
 var targetY = canvas.height - targetHeight; // 표적의 y좌표
 
+var missileRadius = 5; // 미사일의 반지름
+var missileX; //미사일의 x좌표
+var missileY; // 미사일의 y좌표
+var isCharging = false; // 파워게이지 채우는 중인지
+var isFired = false; // 공이 발사되었는지
+var isHitted = false; // 공이 목표물에 명중했는지
+var gauge = Math.PI; // 파워게이지
+var gaugeDIF = Math.PI / 60; // 파워게이지가 충전되는 속도
+var gaugeBarRadius = 30; // 파워게이지바의 반지름
+var missilePower; // 미사일 파워
+var missileSpeedX; // 미사일 x방향 속도
+var missileSpeedY; // 미사일 y방향 속도
+var GRAVITY_ACCELERATION = 0.098; // 공이 아래쪽을 받는 힘(중력가속도)
+
 function drawTarget() {
   context.fillRect(targetX, targetY, targetWidth, targetHeight);
   context.fillStyle = "red";
