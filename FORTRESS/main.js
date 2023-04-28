@@ -40,6 +40,13 @@ var missileSpeedX; // 미사일 x방향 속도
 var missileSpeedY; // 미사일 y방향 속도
 var GRAVITY_ACCELERATION = 0.098; // 공이 아래쪽을 받는 힘(중력가속도)
 
+function checkMissile() {
+  //미사일이 명중되지 않은 경우
+  if (missileX <= 0 || missileX >= canvas.width || missileY >= canvas.height) {
+    isFired = false;
+  }
+}
+
 function drawMissile() {
   context.beginPath();
   context.arc(missileX, missileY, missileRadius, 0, Math.PI * 2);
@@ -149,6 +156,7 @@ function main() {
     missileX = missileX + missileSpeedX;
     missileY = missileY - missileSpeedY;
   }
+  checkMissile();
   drawTank();
   drawTarget();
   drawMissile();
