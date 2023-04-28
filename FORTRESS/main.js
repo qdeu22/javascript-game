@@ -45,6 +45,18 @@ function checkMissile() {
   if (missileX <= 0 || missileX >= canvas.width || missileY >= canvas.height) {
     isFired = false;
   }
+
+  //명중했을때
+  if (
+    missileX >= targetX &&
+    missileX <= targetX + targetWidth &&
+    missileY >= targetY
+  ) {
+    isHitted = true;
+    if (confirm("명중입니다. 다시 하시겠습니까?")) {
+      location.reload();
+    }
+  }
 }
 
 function drawMissile() {
