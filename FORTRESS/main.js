@@ -40,6 +40,19 @@ var missileSpeedX; // 미사일 x방향 속도
 var missileSpeedY; // 미사일 y방향 속도
 var GRAVITY_ACCELERATION = 0.098; // 공이 아래쪽을 받는 힘(중력가속도)
 
+function drawGausing() {
+  context.beginPath();
+  context.arc(
+    tankCenterX,
+    tankCenterY - cannonLength,
+    gaugeBarRadius,
+    Math.PI,
+    gauge,
+    false
+  );
+  context.stroke();
+}
+
 function drawTarget() {
   context.fillRect(targetX, targetY, targetWidth, targetHeight);
   context.fillStyle = "red";
@@ -61,6 +74,9 @@ function keyDownHandler(e) {
   if (e.key === "ArrowDown" && cannonAngle >= 0) {
     cannonAngle -= cannonAngleDIF;
   }
+  if (e.key === " " && !isFired) {
+    isCharging = true;
+  }
 }
 function keyUpHandler(e) {
   if (e.key === "ArrowLeft") {
@@ -68,6 +84,11 @@ function keyUpHandler(e) {
   }
   if (e.key === "ArrowRight") {
     tankRightPressed = false;
+  }
+  if (e.key === " " && !isFired) {
+    isCharging = false;
+    isFired = true;
+    gauge = Math.PI;
   }
 }
 
@@ -102,6 +123,12 @@ function main() {
   }
   if (tankRightPressed && tankX + tankWidth < canvas.width) {
     tankX += tankSpeed;
+  }
+  if (isCharging && !isFired) {
+    if (gauge < Math.PI * 2) {
+      gauge += gaugeDIF;
+    }
+    drawGausing();
   }
   drawTank();
   drawTarget();
