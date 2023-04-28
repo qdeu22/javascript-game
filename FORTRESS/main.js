@@ -96,6 +96,9 @@ function keyUpHandler(e) {
   if (e.key === " " && !isFired) {
     isCharging = false;
     isFired = true;
+    missilePower = gauge * 1.6;
+    missileSpeedX = missilePower * Math.cos(cannonAngle);
+    missileSpeedY = missilePower * Math.sin(cannonAngle);
     gauge = Math.PI;
   }
 }
@@ -141,6 +144,10 @@ function main() {
   if (!isFired) {
     missileX = tankCenterX + cannonLength * Math.cos(cannonAngle);
     missileY = tankCenterY - cannonLength * Math.sin(cannonAngle);
+  } else {
+    missileSpeedY -= GRAVITY_ACCELERATION;
+    missileX = missileX + missileSpeedX;
+    missileY = missileY - missileSpeedY;
   }
   drawTank();
   drawTarget();
