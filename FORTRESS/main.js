@@ -40,6 +40,14 @@ var missileSpeedX; // 미사일 x방향 속도
 var missileSpeedY; // 미사일 y방향 속도
 var GRAVITY_ACCELERATION = 0.098; // 공이 아래쪽을 받는 힘(중력가속도)
 
+function drawMissile() {
+  context.beginPath();
+  context.arc(missileX, missileY, missileRadius, 0, Math.PI * 2);
+  context.fillStyle = "blue";
+  context.fill();
+  context.closePath();
+}
+
 function drawGausing() {
   context.beginPath();
   context.arc(
@@ -130,8 +138,13 @@ function main() {
     }
     drawGausing();
   }
+  if (!isFired) {
+    missileX = tankCenterX + cannonLength * Math.cos(cannonAngle);
+    missileY = tankCenterY - cannonLength * Math.sin(cannonAngle);
+  }
   drawTank();
   drawTarget();
+  drawMissile();
   requestAnimationFrame(main);
 }
 
