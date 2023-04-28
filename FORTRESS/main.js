@@ -21,6 +21,16 @@ var cannonAngle = Math.PI / 4; // 캐논의 각도 (45도)
 var cannonAngleDIF = Math.PI / 60; // 각도의 변화량
 var cannonLength = tankWidth * Math.sqrt(2); // 캐논의 길이
 
+var targetWidth = Math.floor(Math.random() * 100 + 30); // 표적의 가로길이
+var targetHeight = Math.floor(Math.random() * 100 + 10); // 표적의 세로길이
+var targetX = Math.floor(Math.random() * (500 - targetWidth + 500)); //표적의 x좌표
+var targetY = canvas.height - targetHeight; // 표적의 y좌표
+
+function drawTarget() {
+  context.fillRect(targetX, targetY, targetWidth, targetHeight);
+  context.fillStyle = "red";
+}
+
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -80,6 +90,7 @@ function main() {
     tankX += tankSpeed;
   }
   drawTank();
+  drawTarget();
   requestAnimationFrame(main);
 }
 
